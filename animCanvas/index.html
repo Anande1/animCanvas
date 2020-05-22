@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation JS dans une balise canvas</title>
+
+<script>
+
+window.onload = init;
+
+var canvas;
+var context;
+
+var posX = 50;
+var posY = 225;
+var velX = 5;
+var velY = 5;
+var radius = 25;
+
+
+function init(){
+    canvas = document.getElementById("canvasAnim");
+    context = canvas.getContext("2d");
+    setInterval(anim, 1000/30); // fonction qui s'apel anim qui va s'executer ttes les  1 SEC/30sec //
+}
+
+function anim(){
+
+    posX += velX;
+
+    posY += velY;
+
+    if(posX - radius < 0 || posX + radius > canvas.width){
+        velX = -velX;
+
+    }
+
+    if(posY + radius > canvas.height || posY - radius < 0){
+        velY = -velY;
+
+    }
+
+
+    context.fillStyle = "#ff0000";
+
+    context.beginPath();
+
+    context.arc(posX, posY, radius, 0, 360*degre, false);  // methode pr dessiner le cercle //
+    
+    context.fill();
+
+    context.closePath();
+
+} 
+</script>
+
+
+
+</head>
+<body>
+
+    <canvas id="canvasAnim" width="600" height="450" style="border: 1px #000 solid">
+        <p>Votre navigateur ne supporte pas la balise canvas !!!</p>
+
+    </canvas>
+    
+</body>
+</html>
